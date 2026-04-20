@@ -17,18 +17,18 @@ void loop() {
   // Reading potentiometer value
   //potValue = analogRead(potPin);
   int rawValue = analogRead(potPin);
-  int percentage = map(rawValue, 0, 4095, 0, 100);
+  int percentage = map(rawValue, 0, 4095, 0, 255);
   int calnumber;
 
   if (percentage >50){
     digitalWrite(enPin, HIGH);
    // Serial.printf(">50 Percent ", percentage);
-   calnumber = map(rawValue, 2047, 4095, 0, 100);
+   calnumber = map(rawValue, 2047, 4095, 0, 255);
   }
 if (percentage <50){
     digitalWrite(enPin, LOW);
    // Serial.printf("<50 Percent " ,percentage);
-   calnumber = map(rawValue, 0, 2047, 0, 100);
+   calnumber = map(rawValue, 0, 2047, 0, 255);
    calnumber = 100-calnumber;
   }
  // Serial.println(percentage);
