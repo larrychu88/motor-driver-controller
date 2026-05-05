@@ -37,23 +37,23 @@ struct_message myData;
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) {
   memcpy(&myData, incomingData, sizeof(myData));
   // Ignore mac completely – just print the message
-  Serial.print("Bytes REceived");
-  Serial.println(len);
-  Serial.print("Char: ");
-  Serial.println(myData.a);
-  Serial.println("Int: ");
-  Serial.println(myData.b1);
-  Serial.println(myData.b2);
-  Serial.println(myData.b3);
-  Serial.println(myData.b4);
-  Serial.println("Float: ");
-  Serial.println(myData.c1);
-  Serial.println(myData.c2);
-  Serial.println(myData.c3);
-  Serial.println(myData.c4);
-  Serial.print("Bool: ");
-  Serial.println(myData.d);
-  Serial.println();
+//  Serial.print("Bytes REceived");
+//  Serial.println(len);
+//  Serial.print("Char: ");
+//  Serial.println(myData.a);
+ // Serial.println("Int: ");
+ // Serial.println(myData.b1);
+ // Serial.println(myData.b2);
+ // Serial.println(myData.b3);
+ // Serial.println(myData.b4);
+ // Serial.println("Float: ");
+ // Serial.println(myData.c1);
+ // Serial.println(myData.c2);
+ // Serial.println(myData.c3);
+ // Serial.println(myData.c4);
+ // Serial.print("Bool: ");
+ // Serial.println(myData.d);
+ // Serial.println();
 
   //Serial.println(myData.msg);
 }
@@ -93,7 +93,7 @@ void setup() {
   Serial.println("ESP-NOW ready, waiting for data...");
 
   const int bt_on_button = 32;  // GPIO pin connected to the button
-  int buttonState = 0;          // variable to store the read state
+  int buttonState = digitalRead(buttonPin);          // variable to store the read state
 
 
 
@@ -124,8 +124,8 @@ void loop() {
   // Read the state of the button (LOW when pressed, HIGH when released)
   buttonState = digitalRead(buttonPin);
 
-  if (buttonState == 0) {
-    Serial.println("Button pressed!");
+  if (buttonState == LOW) {
+  //  Serial.println("Button pressed!"); // IN BLUETOOTH MODE
 
     // Check for incoming Bluetooth data
     //if (SerialBT.available()) {
@@ -168,7 +168,7 @@ analogWrite(pwmPin, value);
 //        // Forward
 //        digitalWrite(enPin, HIGH);
 //       analogWrite(pwmPin, value);
-        Serial.printf("Forward speed: %d\n", value);
+    //    Serial.printf("Forward speed: %d\n", value);
 //      } else if (value < 0) {
         // Reverse
 //        digitalWrite(enPin, LOW);
@@ -178,14 +178,14 @@ analogWrite(pwmPin, value);
 //      } else {
         // Stop
  //       analogWrite(pwmPin, 0);
-        Serial.println("Stop");
+     //   Serial.println("Stop");
  //     }
 //    }
 
 
   } else {
 
-    Serial.println("Button released");
+   // Serial.println("Button released");
 
     // Reading potentiometer value
     //potValue = analogRead(potPin);
@@ -212,14 +212,12 @@ analogWrite(pwmPin, value);
       calnumber = 0;
     }
     analogWrite(pwmPin, calnumber);
-    Serial.println("test   " + String(calnumber));
-    delay(500);
+    //Serial.println("test   " + String(calnumber));
+  //  delay(500);
   }
-  delay(100);  // Simple debounce delay (optional, adjust as needed)
+ // delay(100);  // Simple debounce delay (optional, adjust as needed)
   delay(10);   // Small delay for stability
 }
-
-
 
 
 
